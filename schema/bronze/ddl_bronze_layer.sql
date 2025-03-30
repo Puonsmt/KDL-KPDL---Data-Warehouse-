@@ -7,7 +7,7 @@ IF OBJECT_ID ('bronze.dbro_customer' , 'U') IS NOT NULL
 CREATE TABLE bronze.dbro_customer (
 	customer_code VARCHAR(20) PRIMARY KEY,
 	customer_name NVARCHAR(50),
-	city_code NVARCHAR(50),
+	city_code VARCHAR(50),
 	first_order_date DATE
 );
 
