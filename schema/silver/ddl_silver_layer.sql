@@ -1,6 +1,3 @@
-IF NOT EXISTS (SELECT * FROM sys.schemas WHERE name = 'silver')
-    EXEC('CREATE SCHEMA silver');
-GO
 -- Cơ sở dữ liệu tích hợp  
 IF OBJECT_ID ('silver.dbi_representative_office', 'U') IS NOT NULL
 	DROP TABLE silver.dbi_representative_office;
