@@ -1,6 +1,4 @@
-IF NOT EXISTS (SELECT * FROM sys.schemas WHERE name = 'bronze')
-    EXEC('CREATE SCHEMA bronze');
-GO
+
 -- Cơ sở dữ liệu văn phòng đại diện 
 IF OBJECT_ID ('bronze.dbro_customer' , 'U') IS NOT NULL
 	DROP TABLE bronze.dbro_customer;
