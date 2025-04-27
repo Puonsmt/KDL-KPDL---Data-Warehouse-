@@ -33,6 +33,7 @@ IF OBJECT_ID ('gold.dim_store' , 'U') IS NOT NULL
 CREATE TABLE gold.dim_store (
 	store_key VARCHAR(20) PRIMARY KEY,
 	city_key VARCHAR(20),
+	store_name NVARCHAR(20),
 	FOREIGN KEY (city_key) REFERENCES gold.dim_city (city_key)
 );
 GO
