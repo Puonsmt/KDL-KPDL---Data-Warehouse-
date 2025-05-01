@@ -62,7 +62,6 @@ IF OBJECT_ID ('gold.fact_sales' , 'U') IS NOT NULL
 CREATE TABLE gold.fact_sales (
 	order_key VARCHAR(20),
 	customer_key VARCHAR(20),
-	store_key VARCHAR(20),
 	item_key VARCHAR(20),
 	time_key INT,
 	quantity INT,
@@ -70,7 +69,6 @@ CREATE TABLE gold.fact_sales (
 	PRIMARY KEY (order_key, customer_key, store_key, item_key, time_key),
 	FOREIGN KEY (order_key) REFERENCES gold.dim_order (order_key),
 	FOREIGN KEY (customer_key) REFERENCES gold.dim_customer (customer_key),
-	FOREIGN KEY (store_key) REFERENCES gold.dim_store (store_key),
 	FOREIGN KEY (item_key) REFERENCES gold.dim_item (item_key),
 	FOREIGN KEY (time_key) REFERENCES gold.dim_time (time_key)
 );
