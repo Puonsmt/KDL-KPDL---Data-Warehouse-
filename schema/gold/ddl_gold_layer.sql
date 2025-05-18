@@ -33,7 +33,6 @@ IF OBJECT_ID ('gold.dim_store' , 'U') IS NOT NULL
 CREATE TABLE gold.dim_store (
 	store_key VARCHAR(20) PRIMARY KEY,
 	city_key VARCHAR(20),
-	store_name NVARCHAR(20),
 	FOREIGN KEY (city_key) REFERENCES gold.dim_city (city_key)
 );
 GO
@@ -48,26 +47,17 @@ CREATE TABLE gold.dim_time (
 );
 GO
 
-IF OBJECT_ID ('gold.dim_order' , 'U') IS NOT NULL
-	DROP TABLE gold.dim_order;
-CREATE TABLE gold.dim_order (
-	order_key VARCHAR(20) PRIMARY KEY
-);
-GO
-
 --Cac bang fact 
 
 IF OBJECT_ID ('gold.fact_sales' , 'U') IS NOT NULL
 	DROP TABLE gold.fact_sales;
 CREATE TABLE gold.fact_sales (
-	order_key VARCHAR(20),
 	customer_key VARCHAR(20),
 	item_key VARCHAR(20),
 	time_key INT,
 	quantity INT,
 	total_amount DECIMAL(20,2),
-	PRIMARY KEY (order_key, customer_key, store_key, item_key, time_key),
-	FOREIGN KEY (order_key) REFERENCES gold.dim_order (order_key),
+	PRIMARY KEY (customer_key, item_key, time_key),
 	FOREIGN KEY (customer_key) REFERENCES gold.dim_customer (customer_key),
 	FOREIGN KEY (item_key) REFERENCES gold.dim_item (item_key),
 	FOREIGN KEY (time_key) REFERENCES gold.dim_time (time_key)
@@ -78,8 +68,8 @@ IF OBJECT_ID ('gold.fact_inventory' , 'U') IS NOT NULL
 	DROP TABLE gold.fact_inventory;
 CREATE TABLE gold.fact_inventory (
 	time_key INT,
-	item_key VARCHAR(20),
 	store_key VARCHAR(20),
+	item_key VARCHAR(20),
 	quantity_on_hand INT,
 	PRIMARY KEY (time_key, store_key, item_key),
 	FOREIGN KEY (time_key) REFERENCES gold.dim_time (time_key),
